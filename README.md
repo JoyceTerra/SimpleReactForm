@@ -1,1 +1,1 @@
-Implement a component
+Turn App.js into a container component, and put the graphics in a new presentational component called "CatImage"
