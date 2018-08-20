@@ -1,3 +1,10 @@
-body {
-  padding: 10rem
+.App {
+  display: flex;
+}
+.App > nav {
+  width: 20%
+}
+
+.App > main, .App > nav {
+  padding: 2rem;
 }
