@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
 
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-}
-
 class App extends Component {
-  state = {
-    names: ["Arien", "Mimi", "Rein"]
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(()=>{this.setState({names: shuffle(this.state.names)})}, 1000)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval)
-  }
-
   render() {
     return (
-      <div className="App" onClick={this.loadNew}>
-        {this.state.names.map(name => <div><label>Name: <input value={name}/></label></div>)}
-      </div>
+      <form className="App">
+        <div><label>Name: <input name="name" /></label></div>
+        <div><label>Date of birth: <input name="dateofbirth" type="date" /></label></div>
+        <div>
+          <label>Gender: 
+            <select name="gender">
+              <option label="-" value=""/>
+              <option label="male" value="m"/>
+              <option label="female" value="f"/>
+            </select>
+          </label>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     );
   }
 }
