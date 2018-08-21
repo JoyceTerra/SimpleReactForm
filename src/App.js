@@ -1,31 +1,33 @@
 import React, { Component } from 'react';
 
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
 class App extends Component {
   state = {
-    imageUrl: ''
+    names: ["Arien", "Mimi", "Rein"]
   }
 
   componentDidMount() {
-    this.loadNew()
+    this.interval = setInterval(()=>{this.setState({names: shuffle(this.state.names)})}, 1000)
   }
 
-  loadNew = () => {
-    this.setState({ imageUrl: '' })
-    fetch('https://aws.random.cat/meow').then(r => r.json()).then(({ file }) => {
-      this.setState({ imageUrl: file })
-    })
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
 
   render() {
     return (
       <div className="App" onClick={this.loadNew}>
-        {!this.state.imageUrl && <div>Loading...</div>}
-        {this.state.imageUrl &&
-          <img
-            src={this.state.imageUrl}
-            style={{ maxWidth: '300px', cursor: 'pointer' }}
-            alt="a random cat" />
-        }
+        {this.state.names.map(name => <div><label>Name: <input value={name}/></label></div>)}
       </div>
     );
   }
