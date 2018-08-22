@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   handleSubmit(event){
-    alert(`A name was submitted: 
+    alert(`Some info was submitted: 
       Name: ${this.state.name},
       Date of Birth: ${this.state.dateofbirth},
       Gender: ${this.state.gender}
